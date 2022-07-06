@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+
+    <!-- CSS -->
+    <style>
+        * {
+            margin: 0%;
+            padding: 0%;
+        }
+        .tudo {
+            background-image: linear-gradient(45deg, black,  blue);
+            color: white;
+            height: 100vh;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        .calculadora {
+            position: absolute;
+            background-color: black;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            color: white;
+            border-radius: 25px;
+            padding: 20px;
+            text-align: center;
+        }
+        .botao {
+            background-color: rgb(101, 101, 101);
+            width: 50px;
+            height: 50px;
+            font-size: 25px;
+            border: none;
+            cursor: pointer;
+            color: white;
+            margin: 2px;
+            border-radius: 10px;
+        }
+        .botao:hover {
+            background-color: black;
+        }
+        #texto {
+            background-color: white;
+            margin-left: 4px;
+            margin-right: 4px; 
+            height: 25px;
+            text-align: right;
+            color: rgb(0, 2, 47);
+            font-size: 25px;
+            font-family: Arial, Helvetica, sans-serif;
+            border-radius: 5px;
+            padding: 2px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="tudo">
+        <div class="calculadora">
+            <h1>Calculadora</h1>
+            <p id="texto"></p>
+            <table>
+                <tr>
+                    <td><button class="botao" onclick="clean('')">C</button></td>
+                    <td><button class="botao" onclick="back('')"><</button></td>
+                    <td><button class="botao" onclick="insert('/')">/</button></td>
+                    <td><button class="botao" onclick="insert('*')">X</button></td>
+                </tr>
+                <tr>
+                  <td><button class="botao" onclick="insert('7')">7</button></td>
+                   <td><button class="botao" onclick="insert('8')">8</button></td>
+                    <td><button class="botao" onclick="insert('9')">9</button></td>
+                    <td><button class="botao" onclick="insert('-')">-</button></td>
+                </tr>
+                <tr>
+                    <td><button class="botao" onclick="insert('4')">4</button></td>
+                    <td><button class="botao" onclick="insert('5')">5</button></td>
+                    <td><button class="botao" onclick="insert('6')">6</button></td>
+                    <td><button class="botao" onclick="insert('+')">+</button></td>
+                </tr>
+                <tr>
+                    <td><button class="botao" onclick="insert('1')">1</button></td>
+                    <td><button class="botao" onclick="insert('2')">2</button></td>
+                    <td><button class="botao" onclick="insert('3')">3</button></td>
+                    <td rowspan="2"><button class="botao" style="height: 106px;" onclick="calcular('')">=</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button class="botao" style="width: 106px;">0</button></td>
+                    <td><button class="botao" onclick="insert('.')">.</button></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function insert(number)
+        {
+            const numero = document.getElementById('texto').innerHTML;
+            document.getElementById('texto').innerHTML = numero + number;
+        }
+        function clean()
+        {
+            document.getElementById('texto').innerHTML = ''
+        }
+        function back()
+        {
+            const texto = document.getElementById('texto').innerHTML;
+            document.getElementById('texto').innerHTML = texto.substring(0, texto.length -1)
+        }
+        function calcular()
+        {
+            const texto = document.getElementById('texto').innerHTML;
+            if(texto)
+            {
+                document.getElementById('texto').innerHTML = eval(texto);
+            }
+        }
+    </script>
+
+</body>
+</html>
